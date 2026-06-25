@@ -48,17 +48,26 @@ Use stable IDs across all artifacts so Codex can connect goals, requirements, is
 |---|---|---|
 | `GOAL` | Business, user, or technical goal | `GOAL-001` |
 | `STK` | Stakeholder or stakeholder group | `STK-001` |
+| `ASSUMP` | Scope or risk-bearing assumption | `ASSUMP-001` |
 | `NEED` | Raw elicited need | `NEED-001` |
+| `Q` | Follow-up question or blocked decision | `Q-001` |
 | `REQ` | Functional requirement | `REQ-001` |
 | `NFR` | Non-functional requirement | `NFR-001` |
 | `AC` | Acceptance criteria | `AC-001` |
+| `DEC` | Prioritization or readiness decision | `DEC-001` |
+| `VAL` | Validation finding | `VAL-001` |
 | `ADR` | Architecture decision record | `ADR-001` |
+| `COMP` | Architecture component | `COMP-001` |
+| `DATA` | Data entity, table, or persistence concern | `DATA-001` |
 | `API` | API contract item | `API-001` |
 | `UI` | Screen, flow, or UI state | `UI-001` |
 | `ISSUE` | Implementation issue/task | `ISSUE-001` |
+| `DEP` | Cross-issue dependency | `DEP-001` |
+| `FINDING` | Actionable code review finding | `FINDING-001` |
 | `TEST` | Test scenario or automated test | `TEST-001` |
 | `UAT` | Acceptance/UAT checklist item | `UAT-001` |
 | `REL` | Release or deployment marker | `REL-001` |
+| `S` | Deployment smoke test | `S-001` |
 | `CR` | Change request | `CR-001` |
 
 Every downstream artifact should reference the upstream ID that justified it. For example: `ISSUE-004` should link to `REQ-002`, `AC-006`, `API-003`, and any relevant `UI-002`.
@@ -85,11 +94,44 @@ Use 16-se-change-log-engineering-loop. Baseline REL-002 exists, and I want to ad
 
 Each numbered skill includes references/skill-docs.md with detailed usage docs, output templates, quality checklist, and handoff guidance for that step.
 
+## Validation
+
+Run the local validator before publishing changes:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/validate-skills.ps1
+```
+
+The validator checks skill count, required files, front matter, required sections, agent prompts, and whether ID prefixes used in skill docs are registered in the README traceability table.
+
+## Examples
+
+See `examples/campus-inventory/` for an end-to-end sample artifact set that walks through all 16 skills using a campus lab inventory system.
+
+See `examples/test-prompts.md` for quick prompts that can be used after installing the skills to verify that each skill is discoverable and behaves as expected.
+
 ## Install
 
 Copy the folders inside `skills/` into your Codex skills directory, for example `~/.codex/skills`.
 
 After copying, restart Codex or reload skills if your environment requires it. The skill folder name and the `name:` field inside each `SKILL.md` are intentionally the same.
+
+Common install locations:
+
+| Environment | Skill directory |
+|---|---|
+| Windows | `%USERPROFILE%\.codex\skills` |
+| macOS/Linux | `~/.codex/skills` |
+
+After install, use one of the example prompts to confirm the skill appears in Codex. If a skill does not appear, confirm the copied folder contains `SKILL.md` at its root and restart Codex.
+
+## Release Checklist
+
+- [ ] Run `scripts/validate-skills.ps1`.
+- [ ] Confirm README traceability IDs match all IDs used in skill docs.
+- [ ] Review the end-to-end example for stale handoffs.
+- [ ] Check each changed skill has a clear output template and handoff.
+- [ ] Update changelog or release notes when publishing a new version.
 
 ## Quality Bar
 

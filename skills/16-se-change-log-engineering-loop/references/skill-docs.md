@@ -15,10 +15,12 @@ Gunakan saat PRD, design, code, test, atau app sudah punya baseline lalu user me
 1. Assign `CR-###` and capture requester, request, reason, type, urgency, and baseline affected.
 2. Compare before/after behavior against the current baseline before proposing edits.
 3. Perform impact analysis across requirements, design, database/API, UI, issues, code, tests, acceptance, deployment, docs, and operations.
-4. Define approved scope and explicit not-in-scope items.
-5. Decide routing: specification/design issue, implementation-only bug fix, testing-only gap, deployment correction, or full loop.
-6. Define verification needed and rollback/compatibility concerns.
-7. Route only to affected skills, then update baseline after review/test/acceptance/deployment succeeds.
+4. Classify the change as bug fix, feature addition, behavior change, removal, refactor, hotfix, rollback, or breaking change.
+5. Define approved scope and explicit not-in-scope items.
+6. Define the approval gate: owner, required evidence, decision status, and date if known.
+7. Decide routing: specification/design issue, implementation-only bug fix, testing-only gap, deployment correction, rollback, or full loop.
+8. Define verification needed and rollback/compatibility concerns.
+9. Route only to affected skills, then update baseline after review/test/acceptance/deployment succeeds.
 
 ## Output Template
 
@@ -27,7 +29,7 @@ Gunakan saat PRD, design, code, test, atau app sudah punya baseline lalu user me
 
 ## Change ID
 
-CR-000
+CR-###
 
 ## Request
 
@@ -35,22 +37,41 @@ CR-000
 
 ## Type
 
-Feature addition / Behavior change / Bug fix / Removal / Refactor / Breaking change
+Feature addition / Behavior change / Bug fix / Removal / Refactor / Hotfix / Rollback / Breaking change
+
+## Urgency
+
+Low / Normal / High / Emergency
+
+## Baseline Affected
+
+REL-###
 
 ## Impact Analysis
 
-| Artifact | Affected? | Change Needed | Risk |
-|---|---|---|---|
+| Artifact | Affected? | Before | After | Change Needed | Risk |
+|---|---|---|---|---|---|
 
 ## Approved Scope
 
 ## Not In Scope
+
+## Approval Gate
+
+| Owner | Required Evidence | Decision | Notes |
+|---|---|---|---|
 
 ## Before
 
 ## After
 
 ## Verification Needed
+
+## Rollback and Compatibility
+
+## Baseline Update Rule
+
+Update the baseline only after routed work passes the required review, test, acceptance, and deployment checks.
 
 ## Routing Decision
 
@@ -73,6 +94,9 @@ Add role-based approval before equipment can be borrowed.
 
 ## Routing Decision
 Send to skill(s): 03-se-specification, 07-se-database-api-design, 08-se-ui-design, 09-se-issue-planning.
+
+## Approval Gate
+Owner: Product owner and lab admin. Required evidence: updated REQ/AC, API/UI impact notes, test plan. Decision: Pending.
 ```
 
 ## Quality Checklist
@@ -82,6 +106,8 @@ Send to skill(s): 03-se-specification, 07-se-database-api-design, 08-se-ui-desig
 - Affected dan unaffected artifacts jelas.
 - Approved scope membatasi perubahan.
 - Before/After dan verification needed dicatat.
+- Approval gate dan baseline update rule jelas.
+- Rollback/compatibility dicatat untuk perubahan yang menyentuh deployment, data, API, atau behavior existing.
 
 ## Handoff
 
