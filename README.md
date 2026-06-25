@@ -1,4 +1,4 @@
-# Enterprise Software Engineering Skills
+# Stieven Software Engineering Skill
 
 This repository contains 16 Codex skills for an end-to-end software engineering workflow, from inception to deployment, with an engineering loop for controlled changes.
 
