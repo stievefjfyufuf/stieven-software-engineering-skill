@@ -1,4 +1,5 @@
 interface:
   display_name: "Elicitation"
   short_description: "Pertanyaan dan kebutuhan stakeholder."
-  default_prompt: "Use this skill to menyusun pertanyaan dan menemukan kebutuhan stakeholder."
+  default_prompt: >-
+    Use 02-se-elicitation. Read references/skill-docs.md first, then turn the inception context into stakeholder-specific interview questions, NEED IDs, unresolved Q IDs, conflicts, policy gaps, and assumptions to validate. Keep raw needs separate from solutions; preserve STK and GOAL traceability and hand off cleanly to specification.

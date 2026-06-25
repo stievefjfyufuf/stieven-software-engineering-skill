@@ -1,4 +1,5 @@
 interface:
   display_name: "Inception dan Stakeholder"
   short_description: "Discovery awal stakeholder dan scope."
-  default_prompt: "Use this skill to memahami masalah, tujuan, stakeholder, scope, asumsi, dan pertanyaan terbuka."
+  default_prompt: >-
+    Use 01-se-inception-stakeholder. Read references/skill-docs.md first, then produce a concise but complete inception artifact: problem statement, stakeholder map with STK IDs, GOAL IDs, scope, assumptions, constraints, risks, success signals, and open questions. Do not jump into solution design or implementation; make ambiguity visible and hand off clearly to elicitation.

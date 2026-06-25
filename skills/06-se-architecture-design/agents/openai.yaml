@@ -1,4 +1,5 @@
 interface:
   display_name: "Architecture Design"
   short_description: "Arsitektur, komponen, dan ADR."
-  default_prompt: "Use this skill to menentukan bagian utama aplikasi dan keputusan arsitektur."
+  default_prompt: >-
+    Use 06-se-architecture-design. Read references/skill-docs.md first, then design the system components, boundaries, data flow, integration points, ADRs, deployment assumptions, security concerns, scalability limits, and operational risks. Link every COMP and ADR to REQ, NFR, and DEC IDs; avoid code-level tasks until issue planning.

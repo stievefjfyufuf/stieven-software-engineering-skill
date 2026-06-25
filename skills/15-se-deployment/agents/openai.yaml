@@ -1,4 +1,5 @@
 interface:
   display_name: "Deployment"
   short_description: "Release, deploy, dan smoke test."
-  default_prompt: "Use this skill to mempublikasikan aplikasi dan memeriksa hasilnya."
+  default_prompt: >-
+    Use 15-se-deployment. Read references/skill-docs.md first, then prepare release scope, environment readiness, build/test evidence, migration plan, secret/config checks, smoke tests, monitoring, rollback plan, release notes, and REL baseline marker. Link release content to ISSUE, REQ, TEST, UAT, and CR IDs and state post-deploy verification clearly.

@@ -1,4 +1,5 @@
 interface:
   display_name: "Specification"
   short_description: "Requirement, story, acceptance criteria."
-  default_prompt: "Use this skill to membuat requirement terstruktur dan dapat diuji."
+  default_prompt: >-
+    Use 03-se-specification. Read references/skill-docs.md first, then convert elicited needs into testable REQ, NFR, user story, and AC IDs with source links back to NEED, GOAL, and STK. Remove vague wording, expose missing decisions, define measurable acceptance criteria, and prepare a prioritization-ready specification.

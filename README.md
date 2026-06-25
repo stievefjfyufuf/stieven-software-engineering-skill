@@ -92,7 +92,7 @@ Use 16-se-change-log-engineering-loop. Baseline REL-002 exists, and I want to ad
 
 ## Skill Docs
 
-Each numbered skill includes references/skill-docs.md with detailed usage docs, output templates, quality checklist, and handoff guidance for that step.
+Each numbered skill includes `references/skill-docs.md` with detailed usage docs, output templates, quality checklist, and handoff guidance for that step. Each `SKILL.md` and agent prompt is expected to require reading those docs before producing the step artifact.
 
 ## Validation
 
@@ -102,7 +102,7 @@ Run the local validator before publishing changes:
 powershell -ExecutionPolicy Bypass -File scripts/validate-skills.ps1
 ```
 
-The validator checks skill count, required files, front matter, required sections, agent prompts, and whether ID prefixes used in skill docs are registered in the README traceability table.
+The validator checks skill count, required project files, front matter, required sections, required docs usage, agent prompt depth, example completeness, placeholder text, and whether ID prefixes used in skill docs and examples are registered in the README traceability table.
 
 ## Examples
 
@@ -132,6 +132,13 @@ After install, use one of the example prompts to confirm the skill appears in Co
 - [ ] Review the end-to-end example for stale handoffs.
 - [ ] Check each changed skill has a clear output template and handoff.
 - [ ] Update changelog or release notes when publishing a new version.
+- [ ] Confirm agent prompts remain concise but include quality gates, traceability, risk, verification, and handoff expectations.
+
+## Contributing and License
+
+See `CONTRIBUTING.md` for contribution rules and prompt quality guidance.
+
+This project is licensed under the MIT License. See `LICENSE`.
 
 ## Quality Bar
 

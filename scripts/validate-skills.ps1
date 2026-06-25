@@ -6,6 +6,7 @@ $ErrorActionPreference = 'Stop'
 
 $skillsDir = Join-Path $Root 'skills'
 $readmePath = Join-Path $Root 'README.md'
+$examplesDir = Join-Path $Root 'examples/campus-inventory'
 $errors = New-Object System.Collections.Generic.List[string]
 
 if (-not (Test-Path $skillsDir)) {
@@ -14,6 +15,13 @@ if (-not (Test-Path $skillsDir)) {
 
 if (-not (Test-Path $readmePath)) {
     throw "Missing README.md"
+}
+
+foreach ($rootFile in @('LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md')) {
+    $path = Join-Path $Root $rootFile
+    if (-not (Test-Path $path)) {
+        $errors.Add("Missing root project file: $rootFile.")
+    }
 }
 
 $skills = Get-ChildItem $skillsDir -Directory | Sort-Object Name
@@ -75,6 +83,10 @@ foreach ($skill in $skills) {
                 $errors.Add("$($skill.Name): SKILL.md missing $section.")
             }
         }
+
+        if ($text -notmatch 'Before producing this skill''s artifact, read `references/skill-docs\.md`') {
+            $errors.Add("$($skill.Name): SKILL.md must require reading references/skill-docs.md before producing output.")
+        }
     }
 
     if (Test-Path $docsPath) {
@@ -91,6 +103,18 @@ foreach ($skill in $skills) {
         foreach ($key in $requiredAgentKeys) {
             if ($agent -notmatch [regex]::Escape($key)) {
                 $errors.Add("$($skill.Name): agents/openai.yaml missing $key.")
+            }
+        }
+
+        if ($agent -notmatch 'references/skill-docs\.md') {
+            $errors.Add("$($skill.Name): agents/openai.yaml default_prompt should require reading references/skill-docs.md.")
+        }
+
+        $promptMatch = [regex]::Match($agent, '(?s)default_prompt:\s*(.*)$')
+        if ($promptMatch.Success) {
+            $promptText = $promptMatch.Groups[1].Value.Trim()
+            if ($promptText.Length -lt 180) {
+                $errors.Add("$($skill.Name): agents/openai.yaml default_prompt is too shallow; expected at least 180 characters.")
             }
         }
     }
@@ -111,6 +135,66 @@ Get-ChildItem $skillsDir -Recurse -Include *.md | ForEach-Object {
 foreach ($prefix in ($usedPrefixes | Sort-Object)) {
     if ($registeredPrefixes -notcontains $prefix) {
         $errors.Add("README traceability table missing prefix $prefix.")
+    }
+}
+
+if (-not (Test-Path $examplesDir)) {
+    $errors.Add("Missing examples/campus-inventory directory.")
+}
+else {
+    $expectedExampleFiles = @(
+        'README.md',
+        '01-inception.md',
+        '02-elicitation.md',
+        '03-specification.md',
+        '04-prioritization.md',
+        '05-validation-change.md',
+        '06-architecture-design.md',
+        '07-database-api-design.md',
+        '08-ui-design.md',
+        '09-issue-planning.md',
+        '10-implementation.md',
+        '11-code-review.md',
+        '12-test-planning.md',
+        '13-automated-testing.md',
+        '14-acceptance-testing.md',
+        '15-deployment.md',
+        '16-change-request.md'
+    )
+
+    foreach ($file in $expectedExampleFiles) {
+        $path = Join-Path $examplesDir $file
+        if (-not (Test-Path $path)) {
+            $errors.Add("examples/campus-inventory missing $file.")
+        }
+        elseif ((Get-Content $path -Raw).Trim().Length -lt 80) {
+            $errors.Add("examples/campus-inventory/$file is too small to be a useful example.")
+        }
+    }
+
+    $examplePrefixes = New-Object System.Collections.Generic.HashSet[string]
+    Get-ChildItem $examplesDir -Filter *.md | ForEach-Object {
+        $content = Get-Content $_.FullName -Raw
+        if ($content -match '(?i)\b(TODO|TBD|FIXME|placeholder|coming soon)\b') {
+            $errors.Add("examples/campus-inventory/$($_.Name) contains unfinished placeholder text.")
+        }
+
+        [regex]::Matches($content, '\b([A-Z]+)-\d{3}\b') | ForEach-Object {
+            [void]$examplePrefixes.Add($_.Groups[1].Value)
+        }
+    }
+
+    foreach ($prefix in ($examplePrefixes | Sort-Object)) {
+        if ($registeredPrefixes -notcontains $prefix) {
+            $errors.Add("Example uses unregistered traceability prefix $prefix.")
+        }
+    }
+
+    $requiredExamplePrefixes = @('GOAL','STK','NEED','REQ','AC','DEC','VAL','ADR','COMP','DATA','API','UI','ISSUE','TEST','UAT','REL','CR')
+    foreach ($prefix in $requiredExamplePrefixes) {
+        if (-not $examplePrefixes.Contains($prefix)) {
+            $errors.Add("Example does not demonstrate required prefix $prefix.")
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 interface:
   display_name: "Validation dan Change"
   short_description: "Validasi requirement dan change awal."
-  default_prompt: "Use this skill to memeriksa requirement dan menganalisis perubahan awal."
+  default_prompt: >-
+    Use 05-se-validation-change. Read references/skill-docs.md first, then validate requirements for clarity, testability, feasibility, consistency, risk, and stakeholder alignment. Record VAL and DEC IDs, separate ready items from items that must return upstream, and make the design readiness decision explicit before architecture work begins.

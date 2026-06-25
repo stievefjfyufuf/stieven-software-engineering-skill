@@ -1,4 +1,5 @@
 interface:
   display_name: "UI Design"
   short_description: "Screen, navigasi, form, wireframe."
-  default_prompt: "Use this skill to membuat rancangan ui yang sesuai kebutuhan pengguna."
+  default_prompt: >-
+    Use 08-se-ui-design. Read references/skill-docs.md first, then design user flows, UI IDs, screens, states, navigation, role-specific behavior, error/loading/empty cases, accessibility notes, and API/data dependencies. Tie every UI decision to REQ, AC, API, and stakeholder goals so the future app feels complete, usable, and testable.

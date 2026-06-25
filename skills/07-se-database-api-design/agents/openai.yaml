@@ -1,4 +1,5 @@
 interface:
   display_name: "Database dan API Design"
   short_description: "ERD, tabel, dan API contract."
-  default_prompt: "Use this skill to membuat database dan api contract yang traceable."
+  default_prompt: >-
+    Use 07-se-database-api-design. Read references/skill-docs.md first, then create traceable DATA entities and API contracts with fields, relationships, validation, permissions, errors, pagination, migrations, audit/security needs, and compatibility risks. Link each contract to REQ, AC, NFR, ADR, and UI needs where applicable.

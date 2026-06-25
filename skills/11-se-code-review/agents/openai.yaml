@@ -1,4 +1,5 @@
 interface:
   display_name: "Code Review"
   short_description: "Review diff, risiko, dan test."
-  default_prompt: "Use this skill to memeriksa code dan test sebelum masuk testing lebih luas."
+  default_prompt: >-
+    Use 11-se-code-review. Read references/skill-docs.md first, then review the diff against the issue, acceptance criteria, architecture, security, data safety, migrations, performance, regression risk, and missing tests. Lead with actionable FINDING IDs ordered by severity, cite file/line when available, and give an explicit approve/request changes/block decision.

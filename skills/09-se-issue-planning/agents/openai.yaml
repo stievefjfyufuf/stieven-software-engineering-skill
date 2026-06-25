@@ -1,4 +1,5 @@
 interface:
   display_name: "Issue Planning"
   short_description: "Issue teknis siap dikerjakan."
-  default_prompt: "Use this skill to mengubah requirement dan design menjadi task implementasi."
+  default_prompt: >-
+    Use 09-se-issue-planning. Read references/skill-docs.md first, then break validated specs, architecture, API, and UI design into developer-ready ISSUE IDs with acceptance checklist, files or areas likely affected, dependencies, risks, test expectations, out-of-scope notes, and traceability to REQ, AC, API, UI, DATA, and CR IDs.

@@ -1,4 +1,5 @@
 interface:
   display_name: "Acceptance Testing"
   short_description: "UAT dan validasi user flow."
-  default_prompt: "Use this skill to menguji apakah user flow lengkap diterima."
+  default_prompt: >-
+    Use 14-se-acceptance-testing. Read references/skill-docs.md first, then create or execute UAT scenarios mapped to AC, TEST, REQ, stakeholder roles, and release scope. Include realistic user journeys, evidence needed, pass/fail status, blockers, stakeholder sign-off, and a clear accept/reject/defer decision before deployment.

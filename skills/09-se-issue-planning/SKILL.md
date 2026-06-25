@@ -12,7 +12,7 @@ Use this skill to mengubah requirement dan design menjadi task implementasi.
 
 ## Skill Docs
 
-For detailed step documentation, templates, checklist, and handoff guidance, read references/skill-docs.md after this file when the user asks for full docs or when the step output needs more structure.
+Before producing this skill's artifact, read `references/skill-docs.md` and apply its procedure, output template, traceability IDs, quality checklist, and handoff guidance.
 
 ## Inputs
 

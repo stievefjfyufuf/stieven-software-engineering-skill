@@ -1,4 +1,5 @@
 interface:
   display_name: "Test Planning"
   short_description: "Strategi dan skenario test."
-  default_prompt: "Use this skill to membuat rencana pengujian yang traceable."
+  default_prompt: >-
+    Use 12-se-test-planning. Read references/skill-docs.md first, then create a risk-based TEST plan mapped to REQ, AC, ISSUE, API, UI, data, security, and regression concerns. Cover happy paths, negative paths, permissions, boundaries, migration/config impact, and manual versus automated coverage before automated testing begins.

@@ -1,4 +1,5 @@
 interface:
   display_name: "Automated Testing"
   short_description: "Unit dan integration test."
-  default_prompt: "Use this skill to membuat dan menjalankan automated tests yang relevan."
+  default_prompt: >-
+    Use 13-se-automated-testing. Read references/skill-docs.md first, then add or update automated tests that match the repo framework and highest-risk TEST IDs. Prefer deterministic fixtures, cover permissions, validation, failure modes, and regressions, run focused and relevant broader commands, and record results, failures fixed, skips, and residual gaps.

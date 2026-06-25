@@ -1,4 +1,5 @@
 interface:
   display_name: "Prioritization"
   short_description: "Prioritas backlog dan konflik."
-  default_prompt: "Use this skill to menentukan prioritas dan menyelesaikan konflik kebutuhan."
+  default_prompt: >-
+    Use 04-se-prioritization. Read references/skill-docs.md first, then rank requirements by value, urgency, risk, effort, dependency, and MVP fit. Produce DEC IDs for trade-offs, identify must-have versus deferred scope, call out conflicts or blockers, and hand off only a coherent validated candidate scope.
