@@ -3,4 +3,4 @@ interface:
   short_description: "Release, deploy, dan smoke test."
   default_prompt: >-
     When executing the workflow, follow the Artifact Persistence rules in SKILL.md, verify the saved Markdown artifact, and report its exact path.
-    Use 15-se-deployment. Read references/skill-docs.md first, then prepare release scope, environment readiness, build/test evidence, migration plan, secret/config checks, smoke tests, monitoring, rollback plan, release notes, and REL baseline marker. Link release content to ISSUE, REQ, TEST, UAT, and CR IDs and state post-deploy verification clearly.
+    Use 15-se-deployment. Read references/skill-docs.md first, then prepare release scope, environment readiness, build/test evidence, migration plan, secret/config checks, smoke tests, monitoring, rollback plan, release notes, and REL baseline marker. Link release content to ISSUE, REQ, TEST, UAT, and CR IDs and state post-deploy verification clearly. Treat planning as read-only and execute against a live/shared environment only with explicit user authorization and a named target.

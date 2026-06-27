@@ -4,9 +4,9 @@
 
 | ID | Component | Responsibility | Traceability |
 |---|---|---|---|
-| COMP-001 | Web UI | Student, lecturer, and admin screens | REQ-001, REQ-002, REQ-003 |
-| COMP-002 | API Server | Auth checks, workflow rules, data access | REQ-001 to REQ-004, NFR-001 |
-| COMP-003 | Database | Equipment, requests, approvals, audit logs | REQ-004 |
+| COMP-001 | Web UI | Student, lecturer, and admin screens | REQ-001, REQ-002, REQ-003, REQ-005 |
+| COMP-002 | API Server | Auth checks, workflow rules, data access | REQ-001, REQ-002, REQ-003, REQ-004, REQ-005, NFR-001 |
+| COMP-003 | Database | Equipment, requests, approvals, borrowing records, audit logs | REQ-001, REQ-004, REQ-005 |
 
 ## ADRs
 

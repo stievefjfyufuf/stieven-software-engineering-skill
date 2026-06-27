@@ -9,6 +9,43 @@ $readmePath = Join-Path $Root 'README.md'
 $examplesDir = Join-Path $Root 'examples/campus-inventory'
 $errors = New-Object System.Collections.Generic.List[string]
 
+function Get-TraceIds {
+    param(
+        [string]$Path,
+        [string[]]$Prefixes = @()
+    )
+
+    if (-not (Test-Path $Path)) {
+        return @()
+    }
+
+    $content = Get-Content $Path -Raw
+    $ids = [regex]::Matches($content, '\b([A-Z]+)-\d{3}\b') | ForEach-Object { $_.Value }
+    if ($Prefixes.Count -gt 0) {
+        $ids = $ids | Where-Object { $Prefixes -contains $_.Split('-')[0] }
+    }
+
+    return @($ids | Sort-Object -Unique)
+}
+
+function Add-MissingTraceErrors {
+    param(
+        [string]$SourcePath,
+        [string]$TargetPath,
+        [string[]]$Prefixes,
+        [string]$Label,
+        [System.Collections.Generic.List[string]]$ErrorList
+    )
+
+    $sourceIds = Get-TraceIds -Path $SourcePath -Prefixes $Prefixes
+    $targetIds = Get-TraceIds -Path $TargetPath -Prefixes $Prefixes
+    foreach ($id in $sourceIds) {
+        if ($targetIds -notcontains $id) {
+            $ErrorList.Add("$Label missing upstream traceability ID $id.")
+        }
+    }
+}
+
 if (-not (Test-Path $skillsDir)) {
     throw "Missing skills directory: $skillsDir"
 }
@@ -28,6 +65,64 @@ $skills = Get-ChildItem $skillsDir -Directory | Sort-Object Name
 if ($skills.Count -ne 16) {
     $errors.Add("Expected 16 skill folders, found $($skills.Count).")
 }
+
+$expectedSkillNames = @(
+    '01-se-inception-stakeholder',
+    '02-se-elicitation',
+    '03-se-specification',
+    '04-se-prioritization',
+    '05-se-validation-change',
+    '06-se-architecture-design',
+    '07-se-database-api-design',
+    '08-se-ui-design',
+    '09-se-issue-planning',
+    '10-se-implementation',
+    '11-se-code-review',
+    '12-se-test-planning',
+    '13-se-automated-testing',
+    '14-se-acceptance-testing',
+    '15-se-deployment',
+    '16-se-change-log-engineering-loop'
+)
+
+$actualSkillNames = @($skills | ForEach-Object { $_.Name })
+foreach ($expectedSkillName in $expectedSkillNames) {
+    if ($actualSkillNames -notcontains $expectedSkillName) {
+        $errors.Add("Missing or renamed numbered skill folder: $expectedSkillName.")
+    }
+}
+foreach ($actualSkillName in $actualSkillNames) {
+    if ($expectedSkillNames -notcontains $actualSkillName) {
+        $errors.Add("Unexpected skill folder: $actualSkillName.")
+    }
+}
+
+$expectedArtifactSnippets = @{}
+for ($step = 1; $step -le 15; $step++) {
+    $skillName = $expectedSkillNames[$step - 1]
+    $artifactStem = switch ($step) {
+        1 { 'inception' }
+        2 { 'elicitation' }
+        3 { 'specification' }
+        4 { 'prioritization' }
+        5 { 'validation-change' }
+        6 { 'architecture-design' }
+        7 { 'database-api-design' }
+        8 { 'ui-design' }
+        9 { 'issue-planning' }
+        10 { 'implementation' }
+        11 { 'code-review' }
+        12 { 'test-planning' }
+        13 { 'automated-testing' }
+        14 { 'acceptance-testing' }
+        15 { 'deployment' }
+    }
+    $expectedArtifactSnippets[$skillName] = @("docs/software-engineering/$('{0:d2}' -f $step)-$artifactStem.md")
+}
+$expectedArtifactSnippets['16-se-change-log-engineering-loop'] = @(
+    'docs/software-engineering/16-change-request.md',
+    'docs/software-engineering/changes/CR-###.md'
+)
 
 $requiredSkillSections = @(
     '## Purpose',
@@ -104,6 +199,12 @@ foreach ($skill in $skills) {
         if ($text -notmatch '(?i)source of truth') {
             $errors.Add("$($skill.Name): SKILL.md must use the saved artifact as the handoff source of truth.")
         }
+
+        foreach ($artifactSnippet in $expectedArtifactSnippets[$skill.Name]) {
+            if ($text -notmatch [regex]::Escape($artifactSnippet)) {
+                $errors.Add("$($skill.Name): SKILL.md missing canonical artifact path $artifactSnippet.")
+            }
+        }
     }
 
     if (Test-Path $docsPath) {
@@ -120,6 +221,13 @@ foreach ($skill in $skills) {
         foreach ($key in $requiredAgentKeys) {
             if ($agent -notmatch [regex]::Escape($key)) {
                 $errors.Add("$($skill.Name): agents/openai.yaml missing $key.")
+            }
+        }
+
+        foreach ($keyName in @('interface', 'display_name', 'short_description', 'default_prompt')) {
+            $keyCount = ([regex]::Matches($agent, "(?m)^\s*$keyName\s*:")).Count
+            if ($keyCount -ne 1) {
+                $errors.Add("$($skill.Name): agents/openai.yaml must contain exactly one $keyName key; found $keyCount.")
             }
         }
 
@@ -215,6 +323,99 @@ else {
     foreach ($prefix in $requiredExamplePrefixes) {
         if (-not $examplePrefixes.Contains($prefix)) {
             $errors.Add("Example does not demonstrate required prefix $prefix.")
+        }
+    }
+
+    $changeDetailPath = Join-Path $examplesDir 'changes/CR-001.md'
+    if (-not (Test-Path $changeDetailPath)) {
+        $errors.Add('examples/campus-inventory missing changes/CR-001.md detailed change artifact.')
+    }
+    else {
+        $changeDetail = Get-Content $changeDetailPath -Raw
+        foreach ($section in @('## Change ID', '## Baseline Affected', '## Impact Analysis', '## Approved Scope', '## Approval Gate', '## Before', '## After', '## Verification Needed', '## Rollback and Compatibility', '## Routing Decision')) {
+            if ($changeDetail -notmatch [regex]::Escape($section)) {
+                $errors.Add("examples/campus-inventory/changes/CR-001.md missing $section.")
+            }
+        }
+    }
+
+    $step01 = Join-Path $examplesDir '01-inception.md'
+    $step02 = Join-Path $examplesDir '02-elicitation.md'
+    $step03 = Join-Path $examplesDir '03-specification.md'
+    $step04 = Join-Path $examplesDir '04-prioritization.md'
+    $step06 = Join-Path $examplesDir '06-architecture-design.md'
+    $step09 = Join-Path $examplesDir '09-issue-planning.md'
+    $step12 = Join-Path $examplesDir '12-test-planning.md'
+    $step13 = Join-Path $examplesDir '13-automated-testing.md'
+    $step14 = Join-Path $examplesDir '14-acceptance-testing.md'
+    $step15 = Join-Path $examplesDir '15-deployment.md'
+    $step16 = Join-Path $examplesDir '16-change-request.md'
+
+    Add-MissingTraceErrors -SourcePath $step01 -TargetPath $step02 -Prefixes @('Q') -Label 'Step 02 example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step02 -TargetPath $step03 -Prefixes @('NEED') -Label 'Step 03 example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step03 -TargetPath $step04 -Prefixes @('REQ') -Label 'Step 04 example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step03 -TargetPath $step06 -Prefixes @('REQ') -Label 'Step 06 example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step03 -TargetPath $step09 -Prefixes @('REQ','AC') -Label 'Step 09 example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step03 -TargetPath $step12 -Prefixes @('AC') -Label 'Step 12 example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step09 -TargetPath $step15 -Prefixes @('ISSUE') -Label 'Step 15 release example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step12 -TargetPath $step13 -Prefixes @('TEST') -Label 'Step 13 example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step12 -TargetPath $step15 -Prefixes @('TEST') -Label 'Step 15 release example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $step14 -TargetPath $step15 -Prefixes @('UAT') -Label 'Step 15 release example' -ErrorList $errors
+    Add-MissingTraceErrors -SourcePath $changeDetailPath -TargetPath $step16 -Prefixes @('CR','REL') -Label 'Step 16 change index' -ErrorList $errors
+
+    $step07Text = Get-Content (Join-Path $examplesDir '07-database-api-design.md') -Raw
+    foreach ($requiredLifecycleTerm in @('borrowing_records', 'due_at', 'returned_at')) {
+        if ($step07Text -notmatch [regex]::Escape($requiredLifecycleTerm)) {
+            $errors.Add("Step 07 example must define $requiredLifecycleTerm so the overdue workflow has a persisted source of truth.")
+        }
+    }
+
+    $step11Text = Get-Content (Join-Path $examplesDir '11-code-review.md') -Raw
+    if ($step11Text -notmatch '(?i)Status:\s*Approved') {
+        $errors.Add('Step 11 example must pass its review gate before the workflow advances to step 12.')
+    }
+
+    if (Test-Path $changeDetailPath) {
+        foreach ($routedSkill in @('03-se-specification','06-se-architecture-design','07-se-database-api-design','08-se-ui-design','09-se-issue-planning','10-se-implementation','11-se-code-review','12-se-test-planning','13-se-automated-testing','14-se-acceptance-testing','15-se-deployment')) {
+            if ($changeDetail -notmatch [regex]::Escape($routedSkill)) {
+                $errors.Add("Feature CR-001 example bypasses required routed skill $routedSkill.")
+            }
+        }
+    }
+}
+
+$testPromptsPath = Join-Path $Root 'examples/test-prompts.md'
+if (-not (Test-Path $testPromptsPath)) {
+    $errors.Add('Missing examples/test-prompts.md.')
+}
+else {
+    $testPrompts = Get-Content $testPromptsPath -Raw
+    foreach ($skillName in $expectedSkillNames) {
+        if ($testPrompts -notmatch [regex]::Escape($skillName)) {
+            $errors.Add("examples/test-prompts.md does not exercise $skillName.")
+        }
+    }
+}
+
+Get-ChildItem $Root -Recurse -Filter *.md | ForEach-Object {
+    $relativePath = $_.FullName.Substring($Root.Length).TrimStart('\','/')
+    $markdownDirectory = $_.DirectoryName
+    $content = Get-Content $_.FullName -Raw
+    $fenceCount = ([regex]::Matches($content, '(?m)^\s*```')).Count
+    if (($fenceCount % 2) -ne 0) {
+        $errors.Add("$relativePath has an unclosed Markdown code fence.")
+    }
+
+    [regex]::Matches($content, '\[[^\]]+\]\(([^)]+)\)') | ForEach-Object {
+        $target = $_.Groups[1].Value.Trim().Trim('<','>')
+        if ($target -notmatch '^(?i:https?://|mailto:|#)' -and $target -notmatch '^/') {
+            $targetWithoutAnchor = $target.Split('#')[0]
+            if ($targetWithoutAnchor) {
+                $resolvedTarget = Join-Path $markdownDirectory $targetWithoutAnchor
+                if (-not (Test-Path $resolvedTarget)) {
+                    $errors.Add("$relativePath contains a broken local link: $target.")
+                }
+            }
         }
     }
 }

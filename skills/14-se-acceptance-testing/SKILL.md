@@ -40,7 +40,7 @@ UAT checklist, pass/fail result, evidence, accepted/rejected decision, feedback 
 
 ## Handoff
 
-Jika diterima, lanjut ke 15-se-deployment. Jika ditolak, kirim feedback ke 16-se-change-log-engineering-loop.
+Jika diterima, lanjut ke 15-se-deployment. Jika ditolak sebelum baseline pertama dibuat, kirim defect ke 10-se-implementation atau skill upstream yang terdampak lalu ulangi review dan testing. Gunakan 16-se-change-log-engineering-loop hanya untuk feedback yang mengubah baseline yang sudah disetujui atau untuk scope baru yang sengaja ditunda.
 
 ## Quality Rules
 

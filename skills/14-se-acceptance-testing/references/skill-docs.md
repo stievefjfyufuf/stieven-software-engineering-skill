@@ -18,7 +18,7 @@ Gunakan saat alur lengkap pengguna perlu divalidasi sebelum deploy atau ketika s
 4. Mark each item pass, fail, blocked, or not tested with reason.
 5. Separate defects from stakeholder feedback or new change requests.
 6. Decide accepted, rejected, accepted with follow-up, or blocked.
-7. If accepted, send to `15-se-deployment`; if rejected or new scope appears, send to `16-se-change-log-engineering-loop`.
+7. If accepted, send to `15-se-deployment`. If rejected before the first approved baseline, route the defect to `10-se-implementation` or the affected upstream skill and repeat the applicable review and test steps. Use `16-se-change-log-engineering-loop` only when feedback changes an approved baseline or records intentionally deferred new scope.
 
 ## Output Template
 
@@ -69,7 +69,7 @@ Rejected until UAT-002 passes.
 
 ## Handoff
 
-Jika accepted, lanjut ke 15-se-deployment. Jika rejected, kirim feedback ke 16-se-change-log-engineering-loop.
+Jika accepted, lanjut ke 15-se-deployment. Jika rejected sebelum baseline pertama, route defect ke 10-se-implementation atau skill upstream yang terdampak lalu ulangi gate yang relevan. Gunakan 16-se-change-log-engineering-loop hanya untuk perubahan terhadap approved baseline atau scope baru yang ditunda.
 
 ## Common Mistakes To Avoid
 

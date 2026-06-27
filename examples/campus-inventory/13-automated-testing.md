@@ -8,6 +8,9 @@
 | TEST-002 | `tests/admin-overdue-auth.test.ts` | Pass | Covers student and anonymous denial. |
 | TEST-003 | `tests/request-submission.test.ts` | Pass | Covers valid request submission. |
 | TEST-004 | `tests/approval-flow.test.ts` | Pass | Covers approval decision. |
+| TEST-005 | `tests/borrowing-lifecycle.test.ts` | Pass | Covers issue, due date, and return transitions. |
+| TEST-006 | `tests/audit-events.test.ts` | Pass | Covers audit events for all mutating workflow actions. |
+| TEST-007 | `tests/admin-overdue-boundary.test.ts` | Pass | Covers equality and just-past-due boundary behavior. |
 
 ## Verification Evidence
 

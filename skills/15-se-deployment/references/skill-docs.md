@@ -64,6 +64,7 @@ Revert release tag v1.0.1 and restore pre-migration backup if smoke test S-001 f
 
 ## Quality Checklist
 
+- Planning versus execution is explicit; no live/shared deployment occurs without user authorization and a named target environment.
 - Build, tests, env, secret, dan migration readiness jelas.
 - Rollback plan tersedia.
 - Smoke test dilakukan.

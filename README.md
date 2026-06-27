@@ -131,7 +131,7 @@ Run the local validator before publishing changes:
 powershell -ExecutionPolicy Bypass -File scripts/validate-skills.ps1
 ```
 
-The validator checks skill count, required project files, front matter, required sections, required docs usage, agent prompt depth, example completeness, placeholder text, and whether ID prefixes used in skill docs and examples are registered in the README traceability table.
+The validator checks the exact numbered skill set, canonical artifact paths, required project files and sections, front matter, required docs usage, agent prompt depth, example completeness, balanced Markdown fences, local links, test-prompt coverage, lifecycle data needed by the overdue example, cross-step traceability, the step 16 index/detail pair, placeholder text, and whether used ID prefixes are registered in the README traceability table.
 
 ## Examples
 

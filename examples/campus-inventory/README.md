@@ -21,4 +21,4 @@ The artifacts are intentionally compact. They are not a full PRD or implementati
 13. `13-automated-testing.md` records automated test coverage and results.
 14. `14-acceptance-testing.md` captures UAT evidence.
 15. `15-deployment.md` records release, rollback, and baseline.
-16. `16-change-request.md` demonstrates the controlled loop after baseline.
+16. `16-change-request.md` indexes controlled changes after baseline, while `changes/CR-001.md` holds the detailed request used for routed work.

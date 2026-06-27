@@ -4,6 +4,11 @@ All notable changes to this skill pack should be documented in this file.
 
 ## Unreleased
 
+- Fix pre-baseline UAT rejection routing so defects return to affected implementation/design work instead of incorrectly entering baseline change control.
+- Require explicit authorization and a named environment before deployment execution against live or shared targets.
+- Repair the campus example's stable question IDs and add the missing issue/return lifecycle, borrowing record, API/UI contracts, tests, UAT, and release traceability needed by the overdue workflow.
+- Demonstrate both step 16 persisted artifacts with a change index and `changes/CR-001.md` detail record.
+- Extend validation with canonical skill/path checks, Markdown integrity, prompt coverage, lifecycle prerequisites, and cross-step traceability gates.
 - Require every executing workflow to persist a verified Markdown artifact under `docs/software-engineering/` instead of relying on chat-only output.
 - Add canonical filenames for steps 01-16, companion implementation/testing records, and per-request `changes/CR-###.md` history.
 - Extend validation to require artifact persistence, verification, and saved-path handoff rules in all skills.

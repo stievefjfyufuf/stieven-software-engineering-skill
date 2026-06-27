@@ -7,6 +7,7 @@
 | UI-001 | Admin overdue dashboard | Find overdue equipment | API-001 | REQ-001, AC-001 |
 | UI-002 | Student request form | Submit borrowing request | API-002 | REQ-002, AC-002 |
 | UI-003 | Lecturer approval queue | Approve or reject requests | API-003, API-004 | REQ-003, AC-003 |
+| UI-004 | Admin issue and return flow | Record due date, issue, and return | API-005, API-006 | REQ-005, AC-005 |
 
 ## UI States
 
@@ -21,4 +22,4 @@ Student: catalog -> request form -> request status.
 
 Lecturer: approval queue -> request detail -> decision confirmation.
 
-Lab admin: dashboard -> equipment detail -> borrow record.
+Lab admin: dashboard -> approved request -> issue form -> active borrowing record -> return confirmation.

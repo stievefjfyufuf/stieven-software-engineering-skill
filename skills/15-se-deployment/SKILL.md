@@ -45,6 +45,7 @@ Jika ada masalah deployment atau feedback produksi, kirim ke 16-se-change-log-en
 ## Quality Rules
 
 - Keep the work scoped to this skill's single responsibility.
+- Distinguish deployment planning from execution. Do not change a live or shared environment without explicit user authorization, a named target environment, and confirmed rollback readiness.
 - Preserve traceability to stakeholder goals, requirements, issues, tests, or change requests.
 - For enterprise-scale work, call out risk, ownership, dependency, compliance, security, and rollback concerns when relevant.
 - Do not overwrite existing baseline artifacts unless the user explicitly asks for replacement and the change is logged.
