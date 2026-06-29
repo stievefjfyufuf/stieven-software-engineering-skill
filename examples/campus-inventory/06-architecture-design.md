@@ -1,5 +1,11 @@
 # 06 Architecture Design
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/03-specification.md` and `docs/software-engineering/05-validation-change.md`.
+- Writes: `docs/software-engineering/06-architecture-design.md`.
+- Next consumers: steps 07, 09, and 10 preserve its component and ADR decisions.
+
 ## Component Map
 
 | ID | Component | Responsibility | Traceability |

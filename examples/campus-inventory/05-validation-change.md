@@ -1,5 +1,11 @@
 # 05 Validation and Change
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/02-elicitation.md`, `docs/software-engineering/03-specification.md`, and `docs/software-engineering/04-prioritization.md`.
+- Writes: `docs/software-engineering/05-validation-change.md`.
+- Next consumers: steps 06, 07, and 09 use only scope marked ready.
+
 ## Validation Findings
 
 - VAL-001: REQ-001 is testable because Q-002 defines overdue from an active borrowing record and recorded due date.

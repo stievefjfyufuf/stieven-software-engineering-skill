@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Architecture component map, data flow, requirements, user stories, NFRs.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/03-specification.md`, `docs/software-engineering/05-validation-change.md`, and `docs/software-engineering/06-architecture-design.md`.
+- Treat the validated requirements and approved architecture as the source of truth. Preserve `REQ`, `NFR`, `AC`, `COMP`, and `ADR` IDs in data and API decisions.
+- If a required artifact is missing or contradictory, do not invent a contract. Route the conflict to the relevant upstream skill.
+- Worked example chain: steps 03, 05, and 06 in `examples/campus-inventory/` -> `examples/campus-inventory/07-database-api-design.md`.
+
 ## Workflow
 
 - Identifikasi entities dari requirement, user story, dan domain noun.

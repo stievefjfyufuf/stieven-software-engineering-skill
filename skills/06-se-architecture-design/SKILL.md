@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Validated requirements, NFRs, constraints, expected scale, integration needs.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/03-specification.md` and `docs/software-engineering/05-validation-change.md`.
+- Treat only requirements marked ready in step 05 as design inputs. Preserve `REQ`, `NFR`, `AC`, `VAL`, and `DEC` traceability in components and architecture decisions.
+- If either required artifact is missing or readiness is `No`, do not finalize architecture. Route the work to the missing or blocked upstream step.
+- Worked example chain: `examples/campus-inventory/03-specification.md` + `examples/campus-inventory/05-validation-change.md` -> `examples/campus-inventory/06-architecture-design.md`.
+
 ## Workflow
 
 - Pilih style arsitektur yang sesuai: monolith, modular monolith, client-server, service-based, or microservices only when justified.

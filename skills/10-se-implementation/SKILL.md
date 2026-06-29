@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Selected issue, acceptance criteria, repo context, architecture/design/API/UI specs.
 
+## Required Upstream Artifacts
+
+- Before editing code, open and read `docs/software-engineering/09-issue-planning.md` plus the design artifacts referenced by the selected issue: `docs/software-engineering/06-architecture-design.md`, `docs/software-engineering/07-database-api-design.md`, and/or `docs/software-engineering/08-ui-design.md`.
+- Treat the selected `ISSUE` scope and its linked IDs as the implementation boundary. Preserve traceability to `REQ`, `AC`, `API`, and `UI` items in the implementation record.
+- If the issue or a referenced design artifact is missing or ambiguous, do not expand scope silently; return to `09-se-issue-planning` or the affected design skill.
+- Worked example chain: steps 06-09 in `examples/campus-inventory/` -> `examples/campus-inventory/10-implementation.md`.
+
 ## Workflow
 
 - Baca repo dan pattern lokal sebelum mengubah code.

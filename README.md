@@ -69,6 +69,31 @@ Each executing skill must create the directory when needed, write its Markdown a
 
 Approved baseline artifacts must not be silently overwritten. Route baseline-affecting revisions through step 16, preserve prior change history, and store detailed change requests under `docs/software-engineering/changes/`.
 
+## Upstream Artifact Read Contracts
+
+Every skill declares `## Required Upstream Artifacts` in its `SKILL.md`. Before producing a downstream artifact, the agent must open the listed files from the user's project, preserve their traceability IDs, and use them as the source of truth. Conceptual input names or chat history do not replace those files.
+
+| Step | Must read before execution |
+|---|---|
+| 01 | User brief and existing project context; no generated upstream artifact |
+| 02 | `01-inception.md` |
+| 03 | `01-inception.md`, `02-elicitation.md` |
+| 04 | `01-inception.md`, `03-specification.md` |
+| 05 | `02-elicitation.md`, `03-specification.md`, `04-prioritization.md` |
+| 06 | `03-specification.md`, `05-validation-change.md` |
+| 07 | `03-specification.md`, `05-validation-change.md`, `06-architecture-design.md` |
+| 08 | `03-specification.md`, `04-prioritization.md`, `07-database-api-design.md` |
+| 09 | `03-specification.md` through `08-ui-design.md` |
+| 10 | `09-issue-planning.md` plus referenced step 06-08 design artifacts |
+| 11 | `09-issue-planning.md`, `10-implementation.md`, actual diff and tests |
+| 12 | `03-specification.md`, `09-issue-planning.md`, `10-implementation.md`, `11-code-review.md` |
+| 13 | `10-implementation.md`, `12-test-planning.md`, implementation and test framework |
+| 14 | `03-specification.md`, `08-ui-design.md`, `12-test-planning.md`, `13-automated-testing.md` |
+| 15 | `09-issue-planning.md`, `13-automated-testing.md`, `14-acceptance-testing.md` |
+| 16 | `15-deployment.md`, every affected baseline artifact, and existing change records |
+
+When a required artifact is missing, the skill must not silently reconstruct or bypass it. Ask for equivalent approved input or route the workflow to the missing upstream skill. Worked examples under `examples/campus-inventory/` include an `Artifact Contract` section showing what each step reads, writes, and hands off.
+
 ## Traceability ID Standard
 
 Use stable IDs across all artifacts so Codex can connect goals, requirements, issues, code, tests, releases, and changes:

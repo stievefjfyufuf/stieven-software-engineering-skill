@@ -1,5 +1,11 @@
 # 04 Prioritization
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/01-inception.md` and `docs/software-engineering/03-specification.md`.
+- Writes: `docs/software-engineering/04-prioritization.md`.
+- Next consumers: steps 05, 08, and 09 use its approved priority order.
+
 ## Prioritized Backlog
 
 | Requirement ID | Value | Risk | Effort | Dependency | Priority | Rationale |

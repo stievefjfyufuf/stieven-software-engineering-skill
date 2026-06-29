@@ -2,6 +2,8 @@
 
 Use these prompts after installing the skill pack to confirm each skill is discoverable and produces the expected artifact type.
 
+Run the prompts in one test project and keep every generated file under `docs/software-engineering/`. For steps 02-16, verify that the skill opens every path declared in `## Required Upstream Artifacts`; a downstream step must stop or route upstream when a required file is absent. Do not replace the saved files with chat-only context.
+
 ## 01 Inception and Stakeholder
 
 ```text

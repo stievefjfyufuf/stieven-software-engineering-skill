@@ -1,5 +1,11 @@
 # 14 Acceptance Testing
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/03-specification.md`, `docs/software-engineering/08-ui-design.md`, `docs/software-engineering/12-test-planning.md`, and `docs/software-engineering/13-automated-testing.md`.
+- Writes: `docs/software-engineering/14-acceptance-testing.md`.
+- Next consumer: step 15 proceeds only after the acceptance gate passes.
+
 ## UAT Checklist
 
 | ID | Actor | Scenario | Expected Result | Traceability | Status |

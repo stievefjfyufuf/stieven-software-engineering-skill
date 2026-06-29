@@ -1,5 +1,11 @@
 # 09 Issue Planning
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/03-specification.md` through `docs/software-engineering/08-ui-design.md`.
+- Writes: `docs/software-engineering/09-issue-planning.md`.
+- Next consumers: steps 10-12 and 15 use selected issue scope and linked IDs.
+
 ## Issues
 
 ### ISSUE-001: Implement student borrow request submission

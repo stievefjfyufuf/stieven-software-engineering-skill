@@ -1,5 +1,11 @@
 # 01 Inception and Stakeholder
 
+## Artifact Contract
+
+- Reads: user project brief and known constraints; no generated upstream artifact.
+- Writes: `docs/software-engineering/01-inception.md`.
+- Next consumer: step 02 reads this artifact before elicitation.
+
 ## Problem Statement
 
 Campus lab staff cannot reliably track which student borrowed which equipment, when it is due, and who approved the borrowing. This creates lost equipment, manual follow-ups, and weak auditability.

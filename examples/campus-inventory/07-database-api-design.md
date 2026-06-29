@@ -1,5 +1,11 @@
 # 07 Database and API Design
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/03-specification.md`, `docs/software-engineering/05-validation-change.md`, and `docs/software-engineering/06-architecture-design.md`.
+- Writes: `docs/software-engineering/07-database-api-design.md`.
+- Next consumers: steps 08-10 use its data and API contracts.
+
 ## Data Entities
 
 | ID | Entity | Key Fields | Traceability |

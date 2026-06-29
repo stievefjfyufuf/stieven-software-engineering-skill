@@ -1,5 +1,11 @@
 # 03 Specification
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/01-inception.md` and `docs/software-engineering/02-elicitation.md`.
+- Writes: `docs/software-engineering/03-specification.md`.
+- Next consumers: steps 04-09 and 12-14 reuse its requirement and acceptance IDs.
+
 ## Functional Requirements
 
 | ID | Requirement | Source | Acceptance Criteria |

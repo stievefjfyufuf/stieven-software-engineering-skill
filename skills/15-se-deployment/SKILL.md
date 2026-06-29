@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Accepted build, test results, release scope, environment config, migration plan.
 
+## Required Upstream Artifacts
+
+- Before planning or executing release work, open and read `docs/software-engineering/09-issue-planning.md`, `docs/software-engineering/13-automated-testing.md`, and `docs/software-engineering/14-acceptance-testing.md`.
+- Treat approved issues, real test results, and the UAT decision as release gates. Preserve `ISSUE`, `TEST`, and `UAT` IDs in the `REL` record.
+- If tests or acceptance have not passed, or rollback readiness is missing, do not mark the release deployed.
+- Worked example chain: steps 09, 13, and 14 in `examples/campus-inventory/` -> `examples/campus-inventory/15-deployment.md`.
+
 ## Workflow
 
 - Pastikan build, tests, env vars, migrations, and secrets readiness sudah jelas.

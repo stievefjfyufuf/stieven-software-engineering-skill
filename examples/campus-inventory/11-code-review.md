@@ -1,5 +1,11 @@
 # 11 Code Review
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/09-issue-planning.md`, `docs/software-engineering/10-implementation.md`, and the actual diff/tests.
+- Writes: `docs/software-engineering/11-code-review.md`.
+- Next consumer: step 12 proceeds only after the review gate passes.
+
 ## Findings and Resolution
 
 - FINDING-001 [P1]: Verify API-001 denies student and anonymous users. Resolved: authorization coverage confirms both roles are denied.

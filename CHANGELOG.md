@@ -4,6 +4,8 @@ All notable changes to this skill pack should be documented in this file.
 
 ## Unreleased
 
+- Add explicit upstream artifact read contracts to all 16 skills, including canonical source paths, traceability preservation, missing-input behavior, and worked example chains.
+- Add `Reads`, `Writes`, and `Next consumer` contracts to every campus-inventory example and validate those contracts automatically.
 - Update local installation instructions from the legacy `.codex/skills` path to Codex's current user and repository `.agents/skills` locations, with a validator regression check.
 - Fix pre-baseline UAT rejection routing so defects return to affected implementation/design work instead of incorrectly entering baseline change control.
 - Require explicit authorization and a named environment before deployment execution against live or shared targets.

@@ -1,5 +1,11 @@
 # 02 Elicitation
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/01-inception.md`.
+- Writes: `docs/software-engineering/02-elicitation.md`.
+- Next consumer: step 03 reads steps 01 and 02 before specification.
+
 ## Question Bank
 
 - Q-001 for STK-001 and STK-003: Should lecturer approval be required for every request or only restricted equipment?

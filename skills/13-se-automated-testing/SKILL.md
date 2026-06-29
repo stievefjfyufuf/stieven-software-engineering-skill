@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Test plan, implementation diff, repo test framework, acceptance criteria.
 
+## Required Upstream Artifacts
+
+- Before changing tests, open and read `docs/software-engineering/10-implementation.md` and `docs/software-engineering/12-test-planning.md`, then inspect the actual implementation and existing test framework.
+- Treat the mapped `TEST`, `REQ`, `AC`, and `ISSUE` IDs as the required coverage boundary. Record real commands and results; never fabricate execution evidence.
+- If the test plan or implementation evidence is missing, request it or return to the appropriate upstream skill before claiming coverage.
+- Worked example chain: `examples/campus-inventory/10-implementation.md` + `examples/campus-inventory/12-test-planning.md` -> `examples/campus-inventory/13-automated-testing.md`.
+
 ## Workflow
 
 - Ikuti test framework dan pattern yang sudah ada di repo.

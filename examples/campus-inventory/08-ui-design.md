@@ -1,5 +1,11 @@
 # 08 UI Design
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/03-specification.md`, `docs/software-engineering/04-prioritization.md`, and `docs/software-engineering/07-database-api-design.md`.
+- Writes: `docs/software-engineering/08-ui-design.md`.
+- Next consumers: steps 09, 10, and 14 preserve its screens, flows, and states.
+
 ## Screen List
 
 | ID | Screen | User Goal | Data/API | Traceability |

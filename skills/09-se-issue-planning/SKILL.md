@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Validated requirements, architecture, ERD, API contract, UI specs, priority order.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/03-specification.md`, `docs/software-engineering/04-prioritization.md`, `docs/software-engineering/05-validation-change.md`, `docs/software-engineering/06-architecture-design.md`, `docs/software-engineering/07-database-api-design.md`, and `docs/software-engineering/08-ui-design.md`.
+- Use only validated, prioritized scope. Preserve the relevant `REQ`, `NFR`, `AC`, `ADR`, `DATA`, `API`, and `UI` IDs in every issue.
+- If a required artifact is missing or conflicting, do not create implementation-ready issues for the affected scope; route the gap upstream.
+- Worked example chain: steps 03-08 in `examples/campus-inventory/` -> `examples/campus-inventory/09-issue-planning.md`.
+
 ## Workflow
 
 - Buat satu issue untuk satu outcome yang dapat direview.

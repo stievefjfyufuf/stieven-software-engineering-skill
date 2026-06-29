@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Requirements, acceptance criteria, issue, architecture, implementation notes, risks.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/03-specification.md`, `docs/software-engineering/09-issue-planning.md`, `docs/software-engineering/10-implementation.md`, and `docs/software-engineering/11-code-review.md`.
+- Treat acceptance criteria, implemented behavior, risks, and accepted review findings as the source of truth. Map every `TEST` to the relevant `REQ`, `AC`, and `ISSUE` IDs.
+- If review status is not approved or required evidence is missing, do not mark the test plan ready; route the work to step 10 or 11.
+- Worked example chain: steps 03 and 09-11 in `examples/campus-inventory/` -> `examples/campus-inventory/12-test-planning.md`.
+
 ## Workflow
 
 - Map acceptance criteria ke test scenarios.

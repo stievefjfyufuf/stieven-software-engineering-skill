@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Raw needs, stakeholder answers, goals, ambiguity list, domain rules.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/01-inception.md` and `docs/software-engineering/02-elicitation.md`.
+- Treat them as the source of truth for goals, stakeholders, assumptions, constraints, `NEED` items, answers, conflicts, and unresolved questions; preserve all upstream IDs.
+- If either required artifact is missing, do not silently infer it. Ask for equivalent approved input or run the missing upstream skill first.
+- Worked example chain: `examples/campus-inventory/01-inception.md` + `examples/campus-inventory/02-elicitation.md` -> `examples/campus-inventory/03-specification.md`.
+
 ## Workflow
 
 - Ubah kebutuhan menjadi functional requirement yang spesifik.

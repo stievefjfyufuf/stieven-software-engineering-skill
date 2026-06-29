@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Ide aplikasi, konteks bisnis, target pengguna, masalah yang ingin diselesaikan, batasan awal.
 
+## Required Upstream Artifacts
+
+- No generated upstream artifact is required for a new project. Read the user's brief, assignment, existing notes, and any current project documentation before starting.
+- If an existing approved baseline is present, do not replace it through this skill; route the requested revision through `16-se-change-log-engineering-loop`.
+- Record unknown information as assumptions or open questions instead of inventing facts.
+- Worked example output: `examples/campus-inventory/01-inception.md` when using this repository as the skill pack source.
+
 ## Workflow
 
 - Nyatakan masalah utama dalam 1-3 kalimat.

@@ -124,10 +124,30 @@ $expectedArtifactSnippets['16-se-change-log-engineering-loop'] = @(
     'docs/software-engineering/changes/CR-###.md'
 )
 
+$expectedUpstreamArtifacts = @{
+    '01-se-inception-stakeholder' = @()
+    '02-se-elicitation' = @('docs/software-engineering/01-inception.md')
+    '03-se-specification' = @('docs/software-engineering/01-inception.md', 'docs/software-engineering/02-elicitation.md')
+    '04-se-prioritization' = @('docs/software-engineering/01-inception.md', 'docs/software-engineering/03-specification.md')
+    '05-se-validation-change' = @('docs/software-engineering/02-elicitation.md', 'docs/software-engineering/03-specification.md', 'docs/software-engineering/04-prioritization.md')
+    '06-se-architecture-design' = @('docs/software-engineering/03-specification.md', 'docs/software-engineering/05-validation-change.md')
+    '07-se-database-api-design' = @('docs/software-engineering/03-specification.md', 'docs/software-engineering/05-validation-change.md', 'docs/software-engineering/06-architecture-design.md')
+    '08-se-ui-design' = @('docs/software-engineering/03-specification.md', 'docs/software-engineering/04-prioritization.md', 'docs/software-engineering/07-database-api-design.md')
+    '09-se-issue-planning' = @('docs/software-engineering/03-specification.md', 'docs/software-engineering/04-prioritization.md', 'docs/software-engineering/05-validation-change.md', 'docs/software-engineering/06-architecture-design.md', 'docs/software-engineering/07-database-api-design.md', 'docs/software-engineering/08-ui-design.md')
+    '10-se-implementation' = @('docs/software-engineering/06-architecture-design.md', 'docs/software-engineering/07-database-api-design.md', 'docs/software-engineering/08-ui-design.md', 'docs/software-engineering/09-issue-planning.md')
+    '11-se-code-review' = @('docs/software-engineering/09-issue-planning.md', 'docs/software-engineering/10-implementation.md')
+    '12-se-test-planning' = @('docs/software-engineering/03-specification.md', 'docs/software-engineering/09-issue-planning.md', 'docs/software-engineering/10-implementation.md', 'docs/software-engineering/11-code-review.md')
+    '13-se-automated-testing' = @('docs/software-engineering/10-implementation.md', 'docs/software-engineering/12-test-planning.md')
+    '14-se-acceptance-testing' = @('docs/software-engineering/03-specification.md', 'docs/software-engineering/08-ui-design.md', 'docs/software-engineering/12-test-planning.md', 'docs/software-engineering/13-automated-testing.md')
+    '15-se-deployment' = @('docs/software-engineering/09-issue-planning.md', 'docs/software-engineering/13-automated-testing.md', 'docs/software-engineering/14-acceptance-testing.md')
+    '16-se-change-log-engineering-loop' = @('docs/software-engineering/15-deployment.md', 'docs/software-engineering/16-change-request.md', 'docs/software-engineering/changes/CR-###.md')
+}
+
 $requiredSkillSections = @(
     '## Purpose',
     '## Skill Docs',
     '## Inputs',
+    '## Required Upstream Artifacts',
     '## Workflow',
     '## Output',
     '## Artifact Persistence',
@@ -204,6 +224,20 @@ foreach ($skill in $skills) {
             if ($text -notmatch [regex]::Escape($artifactSnippet)) {
                 $errors.Add("$($skill.Name): SKILL.md missing canonical artifact path $artifactSnippet.")
             }
+        }
+
+        foreach ($upstreamArtifact in $expectedUpstreamArtifacts[$skill.Name]) {
+            if ($text -notmatch [regex]::Escape($upstreamArtifact)) {
+                $errors.Add("$($skill.Name): SKILL.md missing required upstream artifact $upstreamArtifact.")
+            }
+        }
+
+        if ($text -notmatch '(?i)Worked example (chain|output):') {
+            $errors.Add("$($skill.Name): SKILL.md must link a worked example output or chain.")
+        }
+
+        if ($skill.Name -ne '01-se-inception-stakeholder' -and $text -notmatch '(?i)do not') {
+            $errors.Add("$($skill.Name): SKILL.md must define fail-safe behavior when upstream evidence is unavailable.")
         }
     }
 
@@ -307,6 +341,26 @@ else {
         }
         elseif ((Get-Content $path -Raw).Trim().Length -lt 80) {
             $errors.Add("examples/campus-inventory/$file is too small to be a useful example.")
+        }
+    }
+
+    for ($step = 1; $step -le 16; $step++) {
+        $exampleFile = $expectedExampleFiles[$step]
+        $examplePath = Join-Path $examplesDir $exampleFile
+        if (Test-Path $examplePath) {
+            $exampleText = Get-Content $examplePath -Raw
+            foreach ($contractMarker in @('## Artifact Contract', '- Reads:', '- Writes:', '- Next consumer')) {
+                if ($exampleText -notmatch [regex]::Escape($contractMarker)) {
+                    $errors.Add("examples/campus-inventory/$exampleFile missing artifact contract marker $contractMarker.")
+                }
+            }
+
+            $skillName = $expectedSkillNames[$step - 1]
+            foreach ($artifactSnippet in $expectedArtifactSnippets[$skillName]) {
+                if ($exampleText -notmatch [regex]::Escape($artifactSnippet)) {
+                    $errors.Add("examples/campus-inventory/$exampleFile missing canonical write path $artifactSnippet.")
+                }
+            }
         }
     }
 

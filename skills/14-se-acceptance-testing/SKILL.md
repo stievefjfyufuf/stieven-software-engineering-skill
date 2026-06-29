@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Acceptance criteria, user flow, implemented feature, automated test results, deployment candidate.
 
+## Required Upstream Artifacts
+
+- Before acceptance testing, open and read `docs/software-engineering/03-specification.md`, `docs/software-engineering/08-ui-design.md`, `docs/software-engineering/12-test-planning.md`, and `docs/software-engineering/13-automated-testing.md`.
+- Treat acceptance criteria, intended user flow, and verified test evidence as the source of truth. Map each `UAT` item to the relevant `REQ`, `AC`, `UI`, and `TEST` IDs.
+- If automated tests are failing or the acceptance environment/evidence is unavailable, do not record an accepted decision.
+- Worked example chain: steps 03, 08, 12, and 13 in `examples/campus-inventory/` -> `examples/campus-inventory/14-acceptance-testing.md`.
+
 ## Workflow
 
 - Ubah acceptance criteria menjadi checklist pengguna.

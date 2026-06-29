@@ -1,5 +1,11 @@
 # 12 Test Planning
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/03-specification.md` and steps 09-11 artifacts.
+- Writes: `docs/software-engineering/12-test-planning.md`.
+- Next consumers: steps 13-15 preserve its `TEST` coverage mapping.
+
 ## Test Matrix
 
 | ID | Acceptance Criteria | Type | Scenario | Traceability |

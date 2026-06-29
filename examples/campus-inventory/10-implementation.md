@@ -1,5 +1,11 @@
 # 10 Implementation
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/09-issue-planning.md` and the step 06-08 design artifacts referenced by the selected issue.
+- Writes: source-code changes plus `docs/software-engineering/10-implementation.md`.
+- Next consumers: steps 11-13 inspect this record and the actual code diff.
+
 ## Selected Issue
 
 ISSUE-003 linked to REQ-001, AC-001, API-001, UI-001.

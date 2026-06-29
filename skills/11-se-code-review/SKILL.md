@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Code diff, issue, acceptance criteria, tests, architecture/design constraints.
 
+## Required Upstream Artifacts
+
+- Before reviewing, open and read `docs/software-engineering/09-issue-planning.md` and `docs/software-engineering/10-implementation.md`, then inspect the actual changed files, diff, and tests.
+- Treat the selected `ISSUE`, linked acceptance criteria, and implementation record as the review boundary. Preserve linked IDs in every `FINDING` and decision.
+- If the implementation record, diff, or issue evidence is missing, do not approve the review; request the missing evidence or return to step 10.
+- Worked example chain: `examples/campus-inventory/09-issue-planning.md` + `examples/campus-inventory/10-implementation.md` -> `examples/campus-inventory/11-code-review.md`.
+
 ## Workflow
 
 - Prioritaskan bugs, behavioral regressions, security risk, data loss risk, and missing tests.

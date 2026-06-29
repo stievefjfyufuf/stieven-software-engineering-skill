@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 User change request, current baseline, PRD/design/code/test/deployment artifacts, stakeholder feedback.
 
+## Required Upstream Artifacts
+
+- Before analyzing a change, open and read `docs/software-engineering/15-deployment.md` and every affected baseline artifact under `docs/software-engineering/01-inception.md` through `docs/software-engineering/14-acceptance-testing.md`. Read the existing `docs/software-engineering/16-change-request.md` and matching `docs/software-engineering/changes/CR-###.md` when continuing an existing request.
+- Treat the latest approved `REL` and affected artifacts as the baseline. Preserve all affected IDs and assign one stable `CR` ID before routing work.
+- If no approved baseline exists, do not fabricate one; use the normal pre-baseline skill flow instead. If an affected artifact is missing, record the gap in impact analysis before approval.
+- Worked example chain: `examples/campus-inventory/15-deployment.md` -> `examples/campus-inventory/16-change-request.md` + `examples/campus-inventory/changes/CR-001.md`.
+
 ## Workflow
 
 - Catat permintaan sebagai Change Request dengan id, request, reason, type, urgency, and requester if known.

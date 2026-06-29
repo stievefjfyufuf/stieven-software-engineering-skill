@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 User stories, acceptance criteria, API contract, domain flow, target users.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/03-specification.md`, `docs/software-engineering/04-prioritization.md`, and `docs/software-engineering/07-database-api-design.md`.
+- Treat user stories, accepted scope, acceptance criteria, and API behavior as the source of truth. Preserve `REQ`, `AC`, and `API` IDs in screen and state definitions.
+- If a required artifact is missing or the API cannot support a required flow, do not hide the gap in UI assumptions; route it upstream.
+- Worked example chain: steps 03, 04, and 07 in `examples/campus-inventory/` -> `examples/campus-inventory/08-ui-design.md`.
+
 ## Workflow
 
 - Turunkan screen dari user stories dan workflow pengguna.

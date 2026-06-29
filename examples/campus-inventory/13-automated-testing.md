@@ -1,5 +1,11 @@
 # 13 Automated Testing
 
+## Artifact Contract
+
+- Reads: `docs/software-engineering/10-implementation.md`, `docs/software-engineering/12-test-planning.md`, and the actual implementation/test framework.
+- Writes: test-code changes plus `docs/software-engineering/13-automated-testing.md`.
+- Next consumers: steps 14 and 15 use its real command results as a release gate.
+
 ## Automated Coverage
 
 | Test ID | Test File | Result | Notes |

@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Requirement set, stakeholder goals, constraints, deadlines, risks.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/01-inception.md` and `docs/software-engineering/03-specification.md`.
+- Treat them as the source of truth for stakeholder goals, constraints, `REQ`, `NFR`, and `AC` IDs; preserve those IDs in every priority decision.
+- If either required artifact is missing, do not invent priorities or requirements. Ask for equivalent approved input or run the missing upstream skill first.
+- Worked example chain: `examples/campus-inventory/01-inception.md` + `examples/campus-inventory/03-specification.md` -> `examples/campus-inventory/04-prioritization.md`.
+
 ## Workflow
 
 - Nilai setiap requirement berdasarkan value, risk, effort, dependency, urgency, dan compliance impact.

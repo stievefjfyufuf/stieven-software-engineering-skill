@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Prioritized requirements, acceptance criteria, conflict log, stakeholder feedback.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/02-elicitation.md`, `docs/software-engineering/03-specification.md`, and `docs/software-engineering/04-prioritization.md`.
+- Treat them as the source of truth for stakeholder evidence, requirements, acceptance criteria, conflicts, priorities, and `DEC` IDs; preserve upstream IDs in each validation finding.
+- If a required artifact is missing, do not declare the requirements ready. Ask for equivalent approved input or run the missing upstream skill first.
+- Worked example chain: steps 02-04 in `examples/campus-inventory/` -> `examples/campus-inventory/05-validation-change.md`.
+
 ## Workflow
 
 - Periksa requirement: clear, complete, consistent, feasible, testable, and traceable.

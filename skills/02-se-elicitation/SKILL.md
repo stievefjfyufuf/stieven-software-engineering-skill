@@ -18,6 +18,13 @@ Before producing this skill's artifact, read `references/skill-docs.md` and appl
 
 Stakeholder map, goals, assumptions, open questions, domain context.
 
+## Required Upstream Artifacts
+
+- Before starting, open and read `docs/software-engineering/01-inception.md`.
+- Treat it as the source of truth for `GOAL`, `STK`, `ASSUMP`, constraints, scope, and open questions; preserve those IDs in the elicitation artifact.
+- If it is missing, do not silently recreate it. Ask for equivalent approved input or run `01-se-inception-stakeholder` first.
+- Worked example chain: `examples/campus-inventory/01-inception.md` -> `examples/campus-inventory/02-elicitation.md`.
+
 ## Workflow
 
 - Kelompokkan pertanyaan berdasarkan stakeholder dan tujuan.
